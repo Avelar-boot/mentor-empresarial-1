@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Mentor Empresarial AI</title>
+
+<style>
+body{
+font-family: Arial;
+margin:0;
+background:#0b1020;
+color:white;
+text-align:center;
+}
+
+header{
+padding:20px;
+background:#111827;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1f2937;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+}
+
+input,select,textarea,button{
+width:90%;
+padding:10px;
+margin:8px;
+border-radius:8px;
+border:none;
+}
+
+button{
+background:#38bdf8;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+display:none;
+background:#0ea5e9;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Mentor Empresarial AI</h1>
+<p>Crie sua empresa + descubra seu perfil empreendedor</p>
+</header>
+
+<div class="container">
+
+<!-- TESTE DISC -->
+<div class="card">
+<h2>📊 Teste DISC (Perfil Empreendedor)</h2>
+
+<input id="nome" placeholder="Seu nome">
+
+<select id="disc">
+<option value="D">D - Dominante</option>
+<option value="I">I - Influente</option>
+<option value="S">S - Estável</option>
+<option value="C">C - Analítico</option>
+</select>
+
+<button onclick="gerarPerfil()">Gerar Perfil</button>
+
+<div id="perfil" class="result"></div>
+</div>
+
+<!-- CRIAÇÃO DA EMPRESA -->
+<div class="card">
+<h2>🏢 Criação da Empresa</h2>
+
+<input id="empresa" placeholder="Nome da empresa">
+<textarea id="area" placeholder="O que sua empresa faz?"></textarea>
+
+<button onclick="gerarEmpresa()">Criar Estratégia</button>
+
+<div id="empresaRes" class="result"></div>
+</div>
+
+<!-- IA SIMULADA -->
+<div class="card">
+<h2>🤖 Consultor IA Empresarial</h2>
+
+<textarea id="pergunta" placeholder="Pergunte algo sobre negócios..."></textarea>
+<button onclick="ia()">Perguntar</button>
+
+<div id="iaRes" class="result"></div>
+</div>
+
+</div>
+
+<script>
+
+let perfilUser = "";
+
+function gerarPerfil(){
+
+let nome = document.getElementById("nome").value;
+let disc = document.getElementById("disc").value;
+
+perfilUser = disc;
+
+let texto = "";
+
+if(disc=="D"){
+texto = "Você é um líder dominante. Perfil ideal para negócios agressivos e crescimento rápido.";
+}
+
+if(disc=="I"){
+texto = "Você é comunicativo e criativo. Ideal para marketing, vendas e redes sociais.";
+}
+
+if(disc=="S"){
+texto = "Você é estável e confiável. Ideal para serviços e relacionamento com clientes.";
+}
+
+if(disc=="C"){
+texto = "Você é analítico e estratégico. Ideal para tecnologia, finanças e planejamento.";
+}
+
+document.getElementById("perfil").style.display="block";
+document.getElementById("perfil").innerHTML =
+"<h3>"+nome+"</h3><p>"+texto+"</p>";
+}
+
+function gerarEmpresa(){
+
+let empresa = document.getElementById("empresa").value;
+let area = document.getElementById("area").value;
+
+let estrategia = "";
+
+if(perfilUser=="D"){
+estrategia = "Foque em crescimento agressivo, vendas diretas e expansão rápida.";
+}
+
+if(perfilUser=="I"){
+estrategia = "Foque em marketing digital, redes sociais e construção de marca.";
+}
+
+if(perfilUser=="S"){
+estrategia = "Foque em fidelização de clientes e serviços de qualidade.";
+}
+
+if(perfilUser=="C"){
+estrategia = "Foque em planejamento, análise de dados e automação.";
+}
+
+document.getElementById("empresaRes").style.display="block";
+
+document.getElementById("empresaRes").innerHTML =
+"<h3>"+empresa+"</h3>" +
+"<p><b>Área:</b> "+area+"</p>" +
+"<p><b>Estratégia:</b> "+estrategia+"</p>" +
+"<p><b>Plano:</b> 0-6 meses validar ideia, 6-18 crescer, 18-36 escalar.</p>";
+}
+
+function ia(){
+
+let q = document.getElementById("pergunta").value.toLowerCase();
+
+let resposta = "";
+
+if(q.includes("vender")){
+resposta = "Para vender mais, foque em tráfego, oferta clara e prova social.";
+}
+else if(q.includes("empresa")){
+resposta = "Uma empresa precisa de problema + solução + público-alvo bem definido.";
+}
+else if(q.includes("dinheiro")){
+resposta = "Dinheiro vem de escala. Primeiro valide, depois automatize.";
+}
+else if(q.includes("marketing")){
+resposta = "Marketing digital hoje depende de conteúdo + tráfego + conversão.";
+}
+else{
+resposta = "Como consultor, recomendo validar sua ideia antes de investir pesado.";
+}
+
+document.getElementById("iaRes").style.display="block";
+document.getElementById("iaRes").innerHTML = resposta;
+}
+
+</script>
+
+</body>
+</html>
